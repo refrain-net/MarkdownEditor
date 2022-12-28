@@ -16,7 +16,7 @@ body {
 
 #wrapper {
   display: grid;
-  grid-template-areas: 'open_button save_button . .'
+  grid-template-areas: 'open_button save_button change_style . '
                        'editor editor editor preview';
   grid-template-columns: 6rem 6rem 1fr 50%;
   grid-template-rows: 2rem 1fr;
@@ -40,6 +40,16 @@ body {
   grid-area: save_button;
   margin: 0;
   padding: 0;
+}
+
+#change_style {
+  border: solid 1px gray;
+  border-radius: 0.5rem;
+  font: inherit;
+  grid-area: change_style;
+  margin: 0;
+  padding: 0;
+  width: 100%;
 }
 
 #editor {

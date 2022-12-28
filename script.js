@@ -39,7 +39,7 @@ const changeStyle = document.querySelector('#change_style');
 const editor = document.querySelector('#editor');
 const preview = document.querySelector('#preview');
 
-const styles = ['a11y-dark.min.css', 'a11y-light.min.css', 'agate.min.css', 'an-old-hope.min.css', 'androidstudio.min.css', 'arduino-light.min.css', 'arta.min.css', 'ascetic.min.css', 'atom-one-dark-reasonable.min.css', 'atom-one-dark.min.css', 'atom-one-light.min.css', 'brown-paper.min.css', 'brown-papersq.png', 'codepen-embed.min.css', 'color-brewer.min.css', 'dark.min.css', 'default.min.css', 'devibeans.min.css', 'docco.min.css', 'far.min.css', 'felipec.min.css', 'foundation.min.css', 'github-dark-dimmed.min.css', 'github-dark.min.css', 'github.min.css', 'gml.min.css', 'googlecode.min.css', 'gradient-dark.min.css', 'gradient-light.min.css', 'grayscale.min.css', 'hybrid.min.css', 'idea.min.css', 'intellij-light.min.css', 'ir-black.min.css', 'isbl-editor-dark.min.css', 'isbl-editor-light.min.css', 'kimbie-dark.min.css', 'kimbie-light.min.css', 'lightfair.min.css', 'lioshi.min.css', 'magula.min.css', 'mono-blue.min.css', 'monokai-sublime.min.css', 'monokai.min.css', 'night-owl.min.css', 'nnfx-dark.min.css', 'nnfx-light.min.css', 'nord.min.css', 'obsidian.min.css', 'panda-syntax-dark.min.css', 'panda-syntax-light.min.css', 'paraiso-dark.min.css', 'paraiso-light.min.css', 'pojoaque.min.css', 'pojoaque.jpg', 'purebasic.min.css', 'qtcreator-dark.min.css', 'qtcreator-light.min.css', 'rainbow.min.css', 'routeros.min.css', 'school-book.min.css', 'shades-of-purple.min.css', 'srcery.min.css', 'stackoverflow-dark.min.css', 'stackoverflow-light.min.css', 'sunburst.min.css', 'tokyo-night-dark.min.css', 'tokyo-night-light.min.css', 'tomorrow-night-blue.min.css', 'tomorrow-night-bright.min.css', 'vs.min.css', 'vs2015.min.css', 'xcode.min.css', 'xt256.min.css'];
+const styles = ['a11y-dark', 'a11y-light', 'agate', 'an-old-hope', 'androidstudio', 'arduino-light', 'arta', 'ascetic', 'atom-one-dark-reasonable', 'atom-one-dark', 'atom-one-light', 'brown-paper', 'brown-papersq.png', 'codepen-embed', 'color-brewer', 'dark', 'default', 'devibeans', 'docco', 'far', 'felipec', 'foundation', 'github-dark-dimmed', 'github-dark', 'github', 'gml', 'googlecode', 'gradient-dark', 'gradient-light', 'grayscale', 'hybrid', 'idea', 'intellij-light', 'ir-black', 'isbl-editor-dark', 'isbl-editor-light', 'kimbie-dark', 'kimbie-light', 'lightfair', 'lioshi', 'magula', 'mono-blue', 'monokai-sublime', 'monokai', 'night-owl', 'nnfx-dark', 'nnfx-light', 'nord', 'obsidian', 'panda-syntax-dark', 'panda-syntax-light', 'paraiso-dark', 'paraiso-light', 'pojoaque', 'pojoaque.jpg', 'purebasic', 'qtcreator-dark', 'qtcreator-light', 'rainbow', 'routeros', 'school-book', 'shades-of-purple', 'srcery', 'stackoverflow-dark', 'stackoverflow-light', 'sunburst', 'tokyo-night-dark', 'tokyo-night-light', 'tomorrow-night-blue', 'tomorrow-night-bright', 'vs', 'vs2015', 'xcode', 'xt256'];
 
 const util = new FileUtil();
 
@@ -95,8 +95,8 @@ preview.addEventListener('contextmenu', function onContextMenu (event) {
 }, false);
 
 styles.forEach(style => {
-  document.head.innerHTML += `<link disabled href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/${style}" rel="stylesheet">`;
-  changeStyle.innerHTML += `<option value="${style}">${style}</option>`;
+  document.head.innerHTML += `<link disabled href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/${style}.min.css" rel="stylesheet">`;
+  changeStyle.innerHTML += `<option value="${style}.min.css">${style}</option>`;
 });
 
 const renderer = new marked.Renderer()

@@ -1,0 +1,64 @@
+@charset 'utf-8';
+
+html {
+  font-size: 20px;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0 auto;
+  max-width: 80rem;
+  padding: 0;
+  width: 100%;
+}
+
+#wrapper {
+  display: grid;
+  grid-template-areas: 'open_button save_button . .'
+                       'editor editor editor preview';
+  grid-template-columns: 6rem 6rem 1fr 50%;
+  grid-template-rows: 2rem 1fr;
+  height: 100%;
+  width: 100%;
+}
+
+#open_button {
+  border: solid 1px gray;
+  border-radius: 0.5rem;
+  font: inherit;
+  grid-area: open_button;
+  margin: 0;
+  padding: 0;
+}
+
+#save_button  {
+  border: solid 1px gray;
+  border-radius: 0.5rem;
+  font: inherit;
+  grid-area: save_button;
+  margin: 0;
+  padding: 0;
+}
+
+#editor {
+  border: solid 1px gray;
+  box-sizing: border-box;
+  font: inherit;
+  grid-area: editor;
+  margin: 0;
+  outline: 0;
+  overflow: scroll;
+  padding: 1rem;
+  resize: none;
+}
+
+#preview {
+  border: solid 1px gray;
+  box-sizing: border-box;
+  grid-area: preview;
+  margin: 0;
+  overflow: scroll;
+  padding: 1rem;
+}

@@ -88,6 +88,7 @@ editor.addEventListener('keyup', function onKeyUp (event) {
 
 editor.addEventListener('scroll', function onScroll (event) {
   preview.scrollTop = preview.scrollHeight * this.scrollTop / this.scrollHeight;
+  event.preventDefault();
 }, false);
 
 preview.addEventListener('contextmenu', function onContextMenu (event) {
@@ -101,6 +102,7 @@ preview.addEventListener('contextmenu', function onContextMenu (event) {
 
 preview.addEventListener('scroll', function onScroll (event) {
   editor.scrollTop = editor.scrollHeight * preview.scrollTop / preview.scrollHeight;
+  event.preventDefault();
 }, false);
 
 styles.forEach(style => {

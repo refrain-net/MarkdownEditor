@@ -82,16 +82,21 @@ editor.addEventListener('drop', async function onDrop (event) {
 }, false);
 
 editor.addEventListener('keyup', function onKeyUp (event) {
-  const value = editor.value;
+  const {value} = this;
   preview.innerHTML = marked.marked(value);
+}, false);
+
+editor.addEventListener('scroll', function onScroll (event) {
+  preview.scrollTop = preview.scrollHeight * this.scrollTop / this.scrollHeight;
 }, false);
 
 preview.addEventListener('contextmenu', function onContextMenu (event) {
   event.preventDefault();
   if (!m) return;
+  const {innerHTML, innerText} = this;
   m.next().value?
-      preview.innerText = preview.innerHTML:
-      preview.innerHTML = preview.innerText;
+      preview.innerText = innerHTML:
+      preview.innerHTML = innerText;
 }, false);
 
 styles.forEach(style => {

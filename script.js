@@ -99,6 +99,10 @@ preview.addEventListener('contextmenu', function onContextMenu (event) {
       preview.innerHTML = innerText;
 }, false);
 
+preview.addEventListener('scroll', function onScroll (event) {
+  editor.scrollTop = editor.scrollHeight * preview.scrollTop / preview.scrollHeight;
+}, false);
+
 styles.forEach(style => {
   document.head.innerHTML += `<link disabled href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/${style}.min.css" rel="stylesheet">`;
   changeStyle.innerHTML += `<option value="${style}.min.css">${style}</option>`;

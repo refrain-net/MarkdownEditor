@@ -33,6 +33,8 @@ class FileUtil {
   }
 }
 
+/** --- declare variables --- */
+
 const openButton = document.querySelector('#open_button');
 const saveButton = document.querySelector('#save_button');
 const changeStyle = document.querySelector('#change_style');
@@ -43,8 +45,11 @@ const styles = ['a11y-dark', 'a11y-light', 'agate', 'an-old-hope', 'androidstudi
 
 const util = new FileUtil();
 
+let activeElement = null;
 let m;
+let progress = 0;
 
+/** --- set event listener --- */
 openButton.addEventListener('click', async function onClick (event) {
   const text = await util.openByPicker({
     types: [{accept: {'text/markdown': ['.md']}}]
@@ -86,10 +91,9 @@ editor.addEventListener('keyup', function onKeyUp (event) {
   preview.innerHTML = marked.marked(value);
 }, false);
 
-editor.addEventListener('scroll', function onScroll (event) {
-  preview.scrollTop = preview.scrollHeight * this.scrollTop / this.scrollHeight;
-  event.preventDefault();
-}, false);
+editor.addEventListener('mouseover', onMouseOver, false);
+
+editor.addEventListener('scroll', onScroll, false);
 
 preview.addEventListener('contextmenu', function onContextMenu (event) {
   event.preventDefault();
@@ -100,15 +104,11 @@ preview.addEventListener('contextmenu', function onContextMenu (event) {
       preview.innerHTML = innerText;
 }, false);
 
-preview.addEventListener('scroll', function onScroll (event) {
-  editor.scrollTop = editor.scrollHeight * preview.scrollTop / preview.scrollHeight;
-  event.preventDefault();
-}, false);
+preview.addEventListener('mouseover', onMouseOver, false);
 
-styles.forEach(style => {
-  document.head.innerHTML += `<link disabled href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/${style}.min.css" rel="stylesheet">`;
-  changeStyle.innerHTML += `<option value="${style}.min.css">${style}</option>`;
-});
+preview.addEventListener('scroll', onScroll, false);
+
+/** --- initialize marked.js --- */
 
 const renderer = new marked.Renderer()
 renderer.code = function (code, language) {
@@ -116,6 +116,37 @@ renderer.code = function (code, language) {
 };
 marked.setOptions({renderer});
 
+/** --- initialize --- */
+
+styles.forEach(style => {
+  document.head.innerHTML += `<link disabled href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/${style}.min.css" rel="stylesheet">`;
+  changeStyle.innerHTML += `<option value="${style}.min.css">${style}</option>`;
+});
+
+window.requestAnimationFrame(animationFrame);
+
+/** --- functions --- */
+
+function animationFrame () {
+  editor.scrollTop = editor.scrollHeight * progress;
+  preview.scrollTop = preview.scrollHeight * progress;
+  window.requestAnimationFrame(animationFrame);
+}
+
+function onMouseOver (event) {
+  activeElement = this === editor? editor:
+                  this === preview? preview:
+                  null;
+}
+  
+function onScroll (event) {
+  if (activeElement !== this) return;
+  progress = this.scrollTop / this.scrollHeight;
+  event.preventDefault();
+}
+
+/** --- generator functions --- */
+  
 function* mode (ret = true) {
   while (true) {
     yield ret;

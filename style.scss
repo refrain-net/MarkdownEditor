@@ -71,4 +71,68 @@ body {
   margin: 0;
   overflow: scroll;
   padding: 1rem;
+  
+  a {
+    color: dodgerblue;
+    text-decoration: 0;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    margin: 1rem 0;
+  }
+  
+  h2 {
+    font-size: 1.8rem;
+    margin: 1rem 0;
+  }
+  
+  h3 {
+    font-size: 1.6rem;
+    margin: 1rem 0;
+  }
+  
+  h4 {
+    font-size: 1.4rem;
+    margin: 1rem 0;
+  }
+  
+  h5 {
+    font-size: 1.2rem;
+    margin: 1rem 0;
+  }
+  
+  h6 {font-size: 1rem;
+    margin: 1rem 0;
+  }
+  
+  html {
+    font-size: 20px;
+  }
+  
+  ol {
+    margin: 1rem 0;
+    padding-left: 1rem;
+  }
+  
+  ol ol {
+    margin: 0;
+  }
+  
+  p {
+    margin: 1rem 0;
+  }
+  
+  strong {
+    background: linear-gradient(0deg, orange 0 30%, transparent 30% 100%);
+  }
+  
+  table {
+    border-collapse: collapse;
+  }
+  
+  th,td {
+    border: solid 0.1rem black;
+    padding: 0.5rem;
+  }
 }

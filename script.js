@@ -89,6 +89,7 @@ editor.addEventListener('drop', async function onDrop (event) {
 editor.addEventListener('keyup', function onKeyUp (event) {
   const {value} = this;
   preview.innerHTML = marked.marked(value);
+  [...preview.querySelectorAll(':not(pre)>code')].forEach(code => code.classList.add('hljs'));
 }, false);
 
 editor.addEventListener('mouseover', onMouseOver, false);

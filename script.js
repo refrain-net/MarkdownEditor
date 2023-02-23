@@ -56,7 +56,7 @@ openButton.addEventListener('click', async function onClick (event) {
   });
   if (!text) return;
   editor.value = text;
-  preview.innerHTML = marked.marked(text);
+  markedPreview(text);
   m = mode();
 }, false);
 
@@ -82,14 +82,13 @@ editor.addEventListener('drop', async function onDrop (event) {
   const text = await util.openByDrop(event.dataTransfer);
   if (!text) return;
   editor.value = text;
-  preview.innerHTML = marked.marked(text);
+  markedPreview(text);
   m = mode();
 }, false);
 
 editor.addEventListener('keyup', function onKeyUp (event) {
   const {value} = this;
-  preview.innerHTML = marked.marked(value);
-  [...preview.querySelectorAll(':not(pre)>code')].forEach(code => code.classList.add('hljs'));
+  markedPreview(value);
 }, false);
 
 editor.addEventListener('mouseover', onMouseOver, false);
@@ -132,6 +131,11 @@ function animationFrame () {
   editor.scrollTop = editor.scrollHeight * progress;
   preview.scrollTop = preview.scrollHeight * progress;
   window.requestAnimationFrame(animationFrame);
+}
+  
+function markedPreview (mdString) {
+  preview.innerHTML = marked.marked(mdString);
+  [...preview.querySelectorAll(':not(pre)>code')].forEach(code => code.classList.add('hljs'));
 }
 
 function onMouseOver (event) {
